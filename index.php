@@ -1,6 +1,7 @@
 <?php
+require __DIR__ . "/_init.php";
+require __DIR__ . "/_taint.php";
 use core\Taint;
-use core\Abuse;
 
 class Input {
     public $val;
@@ -21,7 +22,6 @@ if (is_array($input)) {
     error_log("xsreg::lookup invinput=" . print_r($input, true));
     exit;
 }
-Abuse::incr($_SERVER["REMOTE_ADDR"], 40);
 
     // http://stackoverflow.com/questions/12082507/php-most-lightweight-psr-0-compliant-autoloader
     spl_autoload_register(function($c){@include preg_replace('#\\\|_(?!.+\\\)#','/',$c).'.php';});
